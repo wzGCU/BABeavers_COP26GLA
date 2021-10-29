@@ -54,7 +54,7 @@ public class TetrisBlock : MonoBehaviour
             transform.position += new Vector3(0, 0, -1); //changed from Y -1 to Z -1
             if (!CheckIfValidMove())
             {
-                transform.position -= new Vector3(0, -1, 0);
+                transform.position -= new Vector3(0, 0, -1);
                 AddToGrid();
                 CheckForLines();
                 this.enabled = false;
@@ -69,12 +69,12 @@ public class TetrisBlock : MonoBehaviour
         foreach (Transform children in transform)
         {
             int roundedX = Mathf.RoundToInt(children.transform.position.x);
-            int roundedY = Mathf.RoundToInt(children.transform.position.y);
-            if (roundedX < 0 || roundedX >= width || roundedY < 0 || roundedY >= height)
+            int roundedZ = Mathf.RoundToInt(children.transform.position.z);
+            if (roundedX < 0 || roundedX >= width || roundedZ < 0 || roundedZ >= height)  //changed Z values to Y values
             {
                 return false;
             }
-            if(grid[roundedX,roundedY] != null)
+            if(grid[roundedX,roundedZ] != null)
             {
                 return false;
             }
@@ -88,8 +88,8 @@ public class TetrisBlock : MonoBehaviour
         foreach (Transform children in transform)
         {
             int roundedX = Mathf.RoundToInt(children.transform.position.x);
-            int roundedY = Mathf.RoundToInt(children.transform.position.y);
-            grid[roundedX, roundedY] = children;
+            int roundedZ = Mathf.RoundToInt(children.transform.position.z);
+            grid[roundedX, roundedZ] = children;
         }
     }
 
