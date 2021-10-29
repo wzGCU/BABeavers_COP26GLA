@@ -41,17 +41,17 @@ public class TetrisBlock : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0,0,1), 90);
+            transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0,1,0), 90);
             if (!CheckIfValidMove())
             {
-                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), -90);
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), -90);
             }
         }
 
 
         if(Time.time - previousTime > (Input.GetKey(KeyCode.DownArrow) ? fallTime / 10 : fallTime))
         {
-            transform.position += new Vector3(0, -1, 0);
+            transform.position += new Vector3(0, 0, -1); //changed from Y -1 to Z -1
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(0, -1, 0);
