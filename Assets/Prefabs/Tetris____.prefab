@@ -438,7 +438,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {x: 0, y: 0, z: 0}
-  fallTime: 2
 --- !u!65 &2310293599387924579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -450,5 +449,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 1, z: 3}
+  m_Size: {x: 4.2, y: 2, z: 1.2}
   m_Center: {x: 0.5, y: 0, z: 1}

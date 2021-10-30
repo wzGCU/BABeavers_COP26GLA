@@ -10,37 +10,53 @@ public class TetrisBlock : MonoBehaviour
     public static int height = 20;
     public static int width = 10;
     private static Transform[,] grid = new Transform[width, height];
-    GameObject player;
+    private GameObject player;
+    private bool touchingPlayer;
+    private GameObject den;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        den = GameObject.FindWithTag("Den");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject == player)
+        {
+            //Debug.Log("Plaer touch");
+            touchingPlayer = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            //Debug.Log("Plaer no touch");
+            touchingPlayer = false;        
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) //FindObjectOfType<BeaverMain>().GetTouchingTetris()
+        if (Input.GetButtonDown("LeftMovement") && touchingPlayer) 
         {
             transform.position += new Vector3(-1, 0, 0);
-            player.transform.position = transform.position;
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(-1, 0, 0);
-                player.transform.position = transform.position;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetButtonDown("RightMovement") && touchingPlayer)
         {
             transform.position += new Vector3(1, 0, 0);
-            player.transform.position = transform.position;
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(1, 0, 0);
-                player.transform.position = transform.position;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetButtonDown("Interact") && touchingPlayer)
         {
             transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0,1,0), 90);
             if (!CheckIfValidMove())
@@ -49,21 +65,19 @@ public class TetrisBlock : MonoBehaviour
             }
         }
 
-
-        if(Time.time - previousTime > (Input.GetKey(KeyCode.DownArrow) ? fallTime / 10 : fallTime))
+        if (Time.time - previousTime > fallTime)
         {
             transform.position += new Vector3(0, 0, -1); //changed from Y -1 to Z -1
-            player.transform.position = transform.position;
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(0, 0, -1);
-                player.transform.position = transform.position;
                 AddToGrid();
                 CheckForLines();
                 this.enabled = false;
             }
             previousTime = Time.time;
         }
+        
     }
     
     bool CheckIfValidMove()
@@ -104,7 +118,8 @@ public class TetrisBlock : MonoBehaviour
             {
                     DeleteLine(i);
                     RowDown(i);
-                    //build house of beaver
+                    den.GetComponent<MainManager>().RiseDen();//build house of beaver
+
             }
         }
     }

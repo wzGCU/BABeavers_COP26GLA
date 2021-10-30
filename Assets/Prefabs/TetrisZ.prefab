@@ -301,9 +301,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5668916593009622341}
   - component: {fileID: 5668916593009622340}
-  - component: {fileID: 8363417444601702676}
-  - component: {fileID: -1595635743678367775}
-  - component: {fileID: 9137406816032496284}
   m_Layer: 0
   m_Name: TetrisZ
   m_TagString: Tetris
@@ -343,46 +340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {x: 0, y: 0, z: 0}
-  fallTime: 2
---- !u!65 &8363417444601702676
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5668916593009622339}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 3}
-  m_Center: {x: 0, y: 0.5, z: 1}
---- !u!65 &-1595635743678367775
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5668916593009622339}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
-  m_Center: {x: 1, y: 0, z: 1}
---- !u!65 &9137406816032496284
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5668916593009622339}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
-  m_Center: {x: -1, y: 1, z: 1}
 --- !u!1 &5668916593679490575
 GameObject:
   m_ObjectHideFlags: 0

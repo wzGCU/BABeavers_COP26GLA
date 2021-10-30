@@ -13,7 +13,7 @@ public class BeaverMain : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Interact"))
         {
             Interact();
         }

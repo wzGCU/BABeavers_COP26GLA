@@ -398,8 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7239362094721496467}
   - component: {fileID: 6935058413970904925}
-  - component: {fileID: 4889897904756600903}
-  - component: {fileID: 4809768586508628017}
+  - component: {fileID: 439579247267101465}
   m_Layer: 0
   m_Name: TetrisL
   m_TagString: Tetris
@@ -439,8 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {x: 0, y: 0, z: 0}
-  fallTime: 2
---- !u!65 &4889897904756600903
+--- !u!65 &439579247267101465
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -451,18 +449,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 3}
-  m_Center: {x: 1, y: 1, z: 1}
---- !u!65 &4809768586508628017
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5553120266277218151}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
-  m_Center: {x: 0, y: 0, z: 1}
+  m_Size: {x: 3.2, y: 2.2, z: 1.2}
+  m_Center: {x: 1, y: 0.5, z: 1}
