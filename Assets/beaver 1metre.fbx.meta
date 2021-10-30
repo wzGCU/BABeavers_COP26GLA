@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 79b839dc146301b49b1a6c4ccae50e82
+guid: 91a789f80ed31cb4688f25699fd8ea7f
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: beaver1
-    second: {fileID: 2100000, guid: 526e44cc17fc09947a0ec5742ac62947, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tooths
-    second: {fileID: 2100000, guid: c7306fd448dc77f4781af0e0681fafe7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: whiskers3
-    second: {fileID: 2100000, guid: 1857e46f96f86d54e8610ad8821fa324, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
