@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
+    GameObject player;
     // Update is called once per frame, Fixed makes it looks less laggy
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
     void FixedUpdate()
     {
-        float horizontalX = Input.GetAxis("Horizontal"); //Gets the horizontal positive/negative axis value
-
-        Vector3 movement = new Vector3(horizontalX, 0, 0);
-
-        transform.position += movement * Time.deltaTime;
+        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
     }
 }

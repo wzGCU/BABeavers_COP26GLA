@@ -4,38 +4,69 @@ using UnityEngine;
 
 public class BeaverMain : MonoBehaviour
 {
-    int logCount = 0; //stores value of logs beaver has
-    // Start is called before the first frame update
-    void Start()
-    {
-        ;
-    }
+    [SerializeField]
+    private float speed = 2.0f;
 
-    // Update is called once per frame
+    private bool colidingTree;
+    private GameObject treeToKill;
+    private bool touchingTetris;
+    
     void Update()
     {
-        /*if (Input.GetButton("Interact") && (Collision.gameObject.tag == TreeTag))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Colliding with tree");
-        }*/
+            Interact();
+        }
     }
 
-    public int GetLogCount()
+    void FixedUpdate()
     {
-        return logCount;
+        //Movement of Beaver
+        float horizontalX = Input.GetAxis("Horizontal"); //Gets the horizontal positive/negative axis value
+        float horizontalZ = Input.GetAxis("Vertical"); //Gets the vertical axis value
+        Vector3 movement = new Vector3(horizontalX, 0, horizontalZ);
+        transform.position += movement * Time.deltaTime * speed;
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "TreeTag")
         {
-            Debug.Log("Tree");
+            colidingTree = true;
+            treeToKill = col.gameObject;
         }
-
+        if(col.gameObject.tag == "Tetris")
+        {
+            touchingTetris = true;
+        }
     }
-    void CollectLog(GameObject tree)
+    void OnCollisionExit(Collision col)
     {
-       // logCount += 1;
-        //tree.AddDamage;
+        if (col.gameObject.tag == "TreeTag")
+        {
+            colidingTree = false;
+            treeToKill = null;
+        }
+        if (col.gameObject.tag == "Tetris")
+        {
+            touchingTetris = false;
+        }
+    }
+
+    void Interact()
+    {
+        if (colidingTree)
+        {
+            colidingTree = false;
+            Destroy(treeToKill);
+            colidingTree = false;
+            treeToKill = null;
+            FindObjectOfType<SpawnTetris>().NewTetromino();
+
+        }
+    }
+    public bool GetTouchingTetris()
+    {
+        return touchingTetris;
     }
 }

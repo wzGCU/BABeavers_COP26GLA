@@ -6,37 +6,38 @@ public class TetrisBlock : MonoBehaviour
 {
     public Vector3 rotationPoint;
     private float previousTime;
-    public float fallTime = 0.8f;
+    public float fallTime = 0.5f;
     public static int height = 20;
     public static int width = 10;
     private static Transform[,] grid = new Transform[width, height];
-    private int logLinesCount = 0;
-    private int logLinesRequired = 2;
-    private int lineToDelete;
+    GameObject player;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A)) //FindObjectOfType<BeaverMain>().GetTouchingTetris()
         {
             transform.position += new Vector3(-1, 0, 0);
+            player.transform.position = transform.position;
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(-1, 0, 0);
+                player.transform.position = transform.position;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             transform.position += new Vector3(1, 0, 0);
+            player.transform.position = transform.position;
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(1, 0, 0);
+                player.transform.position = transform.position;
             }
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -52,13 +53,14 @@ public class TetrisBlock : MonoBehaviour
         if(Time.time - previousTime > (Input.GetKey(KeyCode.DownArrow) ? fallTime / 10 : fallTime))
         {
             transform.position += new Vector3(0, 0, -1); //changed from Y -1 to Z -1
+            player.transform.position = transform.position;
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(0, 0, -1);
+                player.transform.position = transform.position;
                 AddToGrid();
                 CheckForLines();
                 this.enabled = false;
-                FindObjectOfType<SpawnTetris>().NewTetromino();
             }
             previousTime = Time.time;
         }
@@ -66,6 +68,7 @@ public class TetrisBlock : MonoBehaviour
     
     bool CheckIfValidMove()
     {
+        
         foreach (Transform children in transform)
         {
             int roundedX = Mathf.RoundToInt(children.transform.position.x);
@@ -99,22 +102,9 @@ public class TetrisBlock : MonoBehaviour
         {
             if(HasLine(i))
             {
-                Debug.Log(logLinesCount);
-                logLinesCount += 1;
-                if(logLinesCount == 1)
-                {
-                    lineToDelete = i;
-                }
-                else if(logLinesCount >= logLinesRequired)
-                {
-                    logLinesCount = 0;
-                    DeleteLine(lineToDelete);
                     DeleteLine(i);
-                    RowDown(lineToDelete);
                     RowDown(i);
                     //build house of beaver
-                }
-                
             }
         }
     }

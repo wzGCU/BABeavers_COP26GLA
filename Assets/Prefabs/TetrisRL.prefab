@@ -204,9 +204,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4172039423792712275}
   - component: {fileID: 3236691951459733605}
+  - component: {fileID: 4138913640187699797}
+  - component: {fileID: 78189769798830476}
   m_Layer: 0
   m_Name: TetrisRL
-  m_TagString: Untagged
+  m_TagString: Tetris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +245,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {x: 0, y: 0, z: 0}
-  fallTime: 0.8
+  fallTime: 2
+--- !u!65 &4138913640187699797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355142881313583455}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1, z: 3}
+  m_Center: {x: 1, y: 0, z: 1}
+--- !u!65 &78189769798830476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355142881313583455}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 3}
+  m_Center: {x: 0, y: 1, z: 1}
 --- !u!1 &7527242384773018495
 GameObject:
   m_ObjectHideFlags: 0
