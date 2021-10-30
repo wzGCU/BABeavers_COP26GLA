@@ -58,11 +58,9 @@ public class BeaverMain : MonoBehaviour
         if (colidingTree)
         {
             colidingTree = false;
-            Destroy(treeToKill);
+            treeToKill.GetComponent<TreeBehaviour>().EatTree();
             colidingTree = false;
             treeToKill = null;
-            FindObjectOfType<SpawnTetris>().NewTetromino();
-
         }
     }
     public bool GetTouchingTetris()

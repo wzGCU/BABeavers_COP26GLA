@@ -7,6 +7,7 @@ TagManager:
   - TreeTag
   - Wall
   - Tetris
+  - Den
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class TetrisBlock : MonoBehaviour
 {
     public Vector3 rotationPoint;
     private float previousTime;
-    public float fallTime = 0.5f;
+    private float fallTime = 0.5f;
     public static int height = 20;
     public static int width = 10;
     private static Transform[,] grid = new Transform[width, height];
@@ -126,6 +126,7 @@ public class TetrisBlock : MonoBehaviour
     {
         for(int j = 0; j < width; j++)
         {
+            Debug.Log(grid[j, i].gameObject);
             Destroy(grid[j, i].gameObject);
             grid[j, i] = null;
         }
@@ -141,7 +142,7 @@ public class TetrisBlock : MonoBehaviour
                 {
                     grid[j, y - 1] = grid[j, y];
                     grid[j, y] = null;
-                    grid[j, y - 1].transform.position -= new Vector3(0, 1, 0);
+                    grid[j, y - 1].transform.position -= new Vector3(0, 0, 1);
                 }
             }
         }
