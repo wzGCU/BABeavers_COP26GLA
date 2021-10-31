@@ -6,18 +6,17 @@ public class TetrisBlock : MonoBehaviour
 {
     public Vector3 rotationPoint;
     private float previousTime;
-    private float fallTime = 0.5f;
+    private float fallTime = 1.5f;
     public static int height = 20;
     public static int width = 10;
     private static Transform[,] grid = new Transform[width, height];
     private GameObject player;
     private bool touchingPlayer;
-    private GameObject den;
-
+    
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        den = GameObject.FindWithTag("Den");
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,23 +39,27 @@ public class TetrisBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("LeftMovement") && touchingPlayer) 
+        if (Input.GetButtonDown("LeftMovement") && CheckIfPlayerPossible()) 
         {
             transform.position += new Vector3(-1, 0, 0);
+            player.transform.position += new Vector3(-1, 0, 0);
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(-1, 0, 0);
+                player.transform.position -= new Vector3(-1, 0, 0);
             }
         }
-        else if (Input.GetButtonDown("RightMovement") && touchingPlayer)
+        else if (Input.GetButtonDown("RightMovement") && CheckIfPlayerPossible())
         {
             transform.position += new Vector3(1, 0, 0);
+            player.transform.position += new Vector3(1, 0, 0);
             if (!CheckIfValidMove())
             {
                 transform.position -= new Vector3(1, 0, 0);
+                player.transform.position -= new Vector3(1, 0, 0);
             }
         }
-        else if (Input.GetButtonDown("Interact") && touchingPlayer)
+        else if (Input.GetButtonDown("Interact") && CheckIfPlayerPossible())
         {
             transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0,1,0), 90);
             if (!CheckIfValidMove())
@@ -64,8 +67,20 @@ public class TetrisBlock : MonoBehaviour
                 transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), -90);
             }
         }
-
-        if (Time.time - previousTime > fallTime)
+        else if (Input.GetButtonDown("DownMovement") && CheckIfPlayerPossible())
+        {
+            transform.position += new Vector3(0, 0, -1); //changed from Y -1 to Z -1
+            player.transform.position += new Vector3(0, 0, -1);
+            if (!CheckIfValidMove())
+            {
+                transform.position -= new Vector3(0, 0, -1);
+                player.transform.position -= new Vector3(0, 0, -1);
+                AddToGrid();
+                CheckForLines();
+                this.enabled = false;
+            }
+        }
+        if (Time.time - previousTime > fallTime && !touchingPlayer)
         {
             transform.position += new Vector3(0, 0, -1); //changed from Y -1 to Z -1
             if (!CheckIfValidMove())
@@ -80,6 +95,16 @@ public class TetrisBlock : MonoBehaviour
         
     }
     
+    bool CheckIfPlayerPossible()
+    {
+        if (touchingPlayer && player.GetComponent<BeaverMain>().GetTetrisMode())
+        {
+            return true;
+        }
+        else
+        return false;
+    }
+
     bool CheckIfValidMove()
     {
         
@@ -118,7 +143,7 @@ public class TetrisBlock : MonoBehaviour
             {
                     DeleteLine(i);
                     RowDown(i);
-                    den.GetComponent<MainManager>().RiseDen();//build house of beaver
+                    player.GetComponent<MainManager>().RiseDen();//build house of beaver
 
             }
         }
