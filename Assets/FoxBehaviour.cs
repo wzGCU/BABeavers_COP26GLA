@@ -82,7 +82,8 @@ public class FoxBehaviour : MonoBehaviour
         }
         if(collision.gameObject.tag == "TreeTag")
         {
-            transform.position += new Vector3(0.1f, 0.2f, 0.1f); ;
+            transform.position += new Vector3(0.1f, 0, 0.1f); ;
         }
+        
     }
 }

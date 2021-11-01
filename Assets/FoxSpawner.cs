@@ -14,24 +14,29 @@ public class FoxSpawner : MonoBehaviour
     private float highPosition = 30f;
     [SerializeField]
     private GameObject Fox;
-    [SerializeField]
+    private GameObject player;
     private int stageToStart = 1;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         GetComponent<MeshRenderer>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - previousTime > spawnTime)
+        if (Time.time - previousTime > spawnTime)
         {
-            Debug.Log("SpawnFox");
-            SpawnFox();
+            if (player.GetComponent<MainManager>().GetDenStage() >= 1)
+            {
+                Debug.Log("SpawnFox");
+                SpawnFox();
+            }
+
             previousTime = Time.time;
         }
-        
+
     }
     void SpawnFox()
     {

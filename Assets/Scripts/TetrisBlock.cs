@@ -26,6 +26,10 @@ public class TetrisBlock : MonoBehaviour
             //Debug.Log("Plaer touch");
             touchingPlayer = true;
         }
+        if(other.gameObject.layer == 7)
+        {
+            other.transform.position += new Vector3(0.1f, 0.1f, 0.1f);
+        }
     }
     private void OnTriggerExit(Collider other)
     {

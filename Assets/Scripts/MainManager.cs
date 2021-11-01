@@ -17,8 +17,8 @@ public class MainManager : MonoBehaviour
     private GameObject waterObj;
     [SerializeField]
     private GameObject spawnerTetris;
-    [SerializeField]
-    private GameObject staleWater;
+   // [SerializeField]
+   // private GameObject staleWater;
     [SerializeField]
     private GameObject[] buildObjects;
 
@@ -38,7 +38,7 @@ public class MainManager : MonoBehaviour
         {
             previousTime = Time.time;
             Debug.Log("rise water");
-            //RiseWater();
+            RiseWater();
         }
     }
     public void RiseDen()
@@ -47,23 +47,33 @@ public class MainManager : MonoBehaviour
         Debug.Log("Den at stage: " + stageDen);
         if (stageDen == 10)
         {
-            //OpenLevel Game Complete <3
+            UnityEngine.SceneManagement.SceneManager.LoadScene("gwin");
         }
         else
         {
             buildObjects[stageDen - 1].SetActive(true);
         }
-        
+
     }
     void RiseWater()
     {
-        waterObj.transform.position += new Vector3(0, waterChangeHeight, 0);
-        spawnerTetris.transform.position += new Vector3(0, waterChangeHeight, 0);
-        if (stageDen != 5)
+        
+        if (stageDen != 6)
         {
-            staleWater.transform.position += new Vector3(0, waterChangeHeight , 0);
+            waterObj.transform.position += new Vector3(0, waterChangeHeight, 0);
+            spawnerTetris.transform.position += new Vector3(0, waterChangeHeight, 0);
+            // staleWater.transform.position += new Vector3(0, waterChangeHeight, 0);
+            stageWater++;
         }
-        stageWater++;
+        
+        if (stageWater == 13)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("govER");
+        }
         Debug.Log("water at stage: " + stageWater);
+    }
+    public int GetDenStage()
+    {
+        return stageDen;
     }
 }
