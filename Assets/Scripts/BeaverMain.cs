@@ -18,6 +18,7 @@ public class BeaverMain : MonoBehaviour
     private bool inDen = false;
     private bool hiding = false;
 
+
     void Update()
     {
         if (Input.GetButtonDown("TetrisMode"))
@@ -124,4 +125,6 @@ public class BeaverMain : MonoBehaviour
     {
         interactText.text = "Leave the Den";
     }
+
+   
 }
