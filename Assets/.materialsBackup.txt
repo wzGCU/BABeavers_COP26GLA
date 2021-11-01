@@ -16,4 +16,5 @@ d9cfde8c83958c64c957c1e77361e95b:.poiyomi/Toon/Default/Cutout:2000
 3048ef56cac37414389280cdba7c018a:.poiyomi/Toon/Default/Cutout:2000
 c187617ca90723444bc11e2d102cd5c9:.poiyomi/Toon/Default/Cutout:500
 308329e6f8ad8e3498513cd5e452facd:.poiyomi/Toon/Default/Cutout:500
-a051b48649c063041973fd31c183ea5c:.poiyomi/Toon/Default/Cutout:2000
+a051b48649c063041973fd31c183ea5c:.poiyomi/Toon/Default/Cutout:2000
+fb26729c661040f4080550d9d7c34dd8:.poiyomi/Toon/Default/Cutout:2000
