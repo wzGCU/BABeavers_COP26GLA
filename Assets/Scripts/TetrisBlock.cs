@@ -62,9 +62,12 @@ public class TetrisBlock : MonoBehaviour
         else if (Input.GetButtonDown("Interact") && CheckIfPlayerPossible())
         {
             transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0,1,0), 90);
+            player.transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), 90);
+
             if (!CheckIfValidMove())
             {
                 transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), -90);
+                player.transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), -90);
             }
         }
         else if (Input.GetButtonDown("DownMovement") && CheckIfPlayerPossible())

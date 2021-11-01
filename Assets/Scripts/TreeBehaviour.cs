@@ -5,15 +5,16 @@ using UnityEngine;
 public class TreeBehaviour : MonoBehaviour
 {
     private Vector3 positionToGo;
+    [SerializeField]
+    private float lowTP = 5;
     private float positionToReady;
     [SerializeField]
     private float speedGrow = 0.0002f;
     [SerializeField]
     private float fixer;
     [SerializeField]
-    private Material notReady;
-    [SerializeField]
-    private Material ready;
+    private GameObject leavesToDisable;
+    
 
     private void Start()
     {
@@ -29,18 +30,18 @@ public class TreeBehaviour : MonoBehaviour
         if (transform.position.y >= positionToReady)
         {
             gameObject.tag = "TreeTag";
-            gameObject.GetComponent<MeshRenderer>().material = ready;
+            leavesToDisable.SetActive(true); 
         }
         else
         {
             gameObject.tag = "Untagged";
-            gameObject.GetComponent<MeshRenderer>().material = notReady;
+            leavesToDisable.SetActive(false);
         }
     }
     public void EatTree()
     {
         
-        transform.position = new Vector3(transform.position.x, transform.position.y-5, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y-lowTP, transform.position.z);
         FindObjectOfType<SpawnTetris>().NewTetromino();
     }
 }

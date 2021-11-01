@@ -13,9 +13,11 @@ public class BeaverMain : MonoBehaviour
     private bool modeTetris = false;
     [SerializeField]
     private Text modeTextObject;
+    [SerializeField]
+    private Text interactText;
     private bool inDen = false;
     private bool hiding = false;
-    
+
     void Update()
     {
         if (Input.GetButtonDown("TetrisMode"))
@@ -24,10 +26,12 @@ public class BeaverMain : MonoBehaviour
             if (modeTetris)
             {
                 modeTextObject.text = "ON";
+                interactText.text = "Rotate Block";
             }
             else
             {
                 modeTextObject.text = "OFF";
+                interactText.text = "Interact";
             }
         }
         if (Input.GetButtonDown("Interact"))
@@ -45,8 +49,17 @@ public class BeaverMain : MonoBehaviour
                 //Movement of Beaver
                 float horizontalX = Input.GetAxis("Horizontal"); //Gets the horizontal positive/negative axis value
                 float horizontalZ = Input.GetAxis("Vertical"); //Gets the vertical axis value
-                Vector3 movement = new Vector3(horizontalX, 0, horizontalZ);
-                transform.position += movement * Time.deltaTime * speed;
+
+                Vector3 movementDir = new Vector3(horizontalX, 0, horizontalZ);
+                movementDir.Normalize();
+                transform.position += movementDir * Time.deltaTime * speed;
+                if (movementDir != Vector3.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(movementDir, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 720*Time.deltaTime);
+                    //transform.forward = movementDir;
+                }
+                
             }
             
         }
@@ -59,6 +72,7 @@ public class BeaverMain : MonoBehaviour
         {
             colidingTree = true;
             treeToKill = col.gameObject;
+            interactText.text = "Chop the Tree";
         }
     }
     void OnCollisionExit(Collision col)
@@ -67,6 +81,7 @@ public class BeaverMain : MonoBehaviour
         {
             colidingTree = false;
             treeToKill = null;
+            interactText.text = "Interact";
         }
     }
 
@@ -78,16 +93,21 @@ public class BeaverMain : MonoBehaviour
             treeToKill.GetComponent<TreeBehaviour>().EatTree();
             colidingTree = false;
             treeToKill = null;
+            interactText.text = "Interact";
         }
         if (hiding)
         {
             hiding = false;
             transform.position += new Vector3(0f, 0f, 20f);
+            interactText.text = "Interact";
         }
         if (inDen)
         {
             hiding = true;
             transform.position += new Vector3(0f,0f, -20f);
+            Invoke("UpdateText", 0.1f);
+            
+            
         }
     }
 
@@ -99,5 +119,9 @@ public class BeaverMain : MonoBehaviour
     public void SetDen(bool value)
     {
         inDen = value;
+    }
+    void UpdateText()
+    {
+        interactText.text = "Leave the Den";
     }
 }

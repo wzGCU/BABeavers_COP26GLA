@@ -39,6 +39,10 @@ public class FoxBehaviour : MonoBehaviour
         {
             transform.rotation = new Quaternion(0, -0.707106829f, 0, 0.707106829f);
             transform.position += new Vector3(speed*axisChange, 0, 0) ;
+            if(transform.position.x <= -43)
+            {
+                Destroy(gameObject);
+            }
         }
         if(currentState == States.BeaverSeen)
         {
@@ -48,6 +52,7 @@ public class FoxBehaviour : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, beaverPosition - transform.position, 10000f, 1000f));
             transform.position += Vector3.Normalize(beaverPosition - transform.position) * speed;
         }
+        
         
     }
     private void OnTriggerEnter(Collider other)
@@ -72,11 +77,12 @@ public class FoxBehaviour : MonoBehaviour
     {
         if(collision.gameObject == player)
         {
-            Debug.Log("Caught"); //gameover
+            Debug.Log("Caught");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("govER");
         }
         if(collision.gameObject.tag == "TreeTag")
         {
-            transform.position += new Vector3(0.1f, 0.2f, 0); ;
+            transform.position += new Vector3(0.1f, 0.2f, 0.1f); ;
         }
     }
 }
