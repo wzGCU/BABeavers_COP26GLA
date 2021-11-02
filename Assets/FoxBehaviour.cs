@@ -78,7 +78,7 @@ public class FoxBehaviour : MonoBehaviour
         if(collision.gameObject == player)
         {
             Debug.Log("Caught");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("govER");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("gameOver");
         }
         if(collision.gameObject.tag == "TreeTag")
         {

@@ -45,9 +45,9 @@ public class MainManager : MonoBehaviour
     {
         stageDen++;
         Debug.Log("Den at stage: " + stageDen);
-        if (stageDen == 10)
+        if (stageDen == 3)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("gwin");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("gameWin");
         }
         else
         {
@@ -58,7 +58,7 @@ public class MainManager : MonoBehaviour
     void RiseWater()
     {
         
-        if (stageDen != 6)
+        if (stageDen != 3)
         {
             waterObj.transform.position += new Vector3(0, waterChangeHeight, 0);
             spawnerTetris.transform.position += new Vector3(0, waterChangeHeight, 0);
@@ -68,7 +68,7 @@ public class MainManager : MonoBehaviour
         
         if (stageWater == 13)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("govER");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("gameOver");
         }
         Debug.Log("water at stage: " + stageWater);
     }
